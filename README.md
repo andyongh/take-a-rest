@@ -11,6 +11,8 @@ API server build with Hertz and ent.
 
 ## Getting Start
 
+### Init project
+
 ```bash
 # init project
 make init
@@ -20,4 +22,30 @@ make model name=User
 
 # add sample idl:hello for rest api
 make update idl=idl/hello/hello.proto
+```
+
+# run it
+
+modify biz/handler/demo/hello_service.go
+
+```go
+	resp := new(demo.HelloResp)
++	resp.RespBody = "Hello, " + req.Name
+
+	c.JSON(consts.StatusOK, resp)
+```
+
+```bash
+go mod tidy
+make dev
+```
+
+### Test
+
+```bash
+# expect: {"message":"pong"}
+curl http://localhost:8888/ping
+
+# expect: {"RespBody":"Hello, Andy"}
+curl http://localhost:8888/hello?name=Andy
 ```
