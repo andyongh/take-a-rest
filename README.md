@@ -14,4 +14,10 @@ API server build with Hertz and ent.
 ```bash
 # init project
 make init
+
+# add ent. model: User
+make model name=User
+
+# add sample idl:hello for rest api
+make update idl=idl/hello/hello.proto
 ```

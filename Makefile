@@ -59,12 +59,8 @@ dev:
 	air --build.cmd "go build -o bin/take-a-rest main.go router.go router_gen.go" --build.bin "./bin/take-a-rest"
 
 update:
-	hz update
-	go generate $(ENT_ROOT)
-
-project:
-#	hz new -module example/m -I idl -idl idl/hello/hello.proto
 	hz update -I idl -idl $(idl)
+	go generate $(ENT_ROOT)
 
 model:
 	go run -mod=mod entgo.io/ent/cmd/ent --target $(ENT_ROOT)/schema new $(name)
