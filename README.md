@@ -24,15 +24,15 @@ make model name=User
 make update idl=idl/hello/hello.proto
 ```
 
-# run it
+## run it
 
 modify biz/handler/demo/hello_service.go
 
 ```go
-	resp := new(demo.HelloResp)
-+	resp.RespBody = "Hello, " + req.Name
+ resp := new(demo.HelloResp)
++ resp.RespBody = "Hello, " + req.Name
 
-	c.JSON(consts.StatusOK, resp)
+ c.JSON(consts.StatusOK, resp)
 ```
 
 ```bash
