@@ -52,18 +52,19 @@ init:
 	@echo "Initializing..."
 ifeq (,$(wildcard ./.hz))
 	hz new -mod take-a-rest
-	go run -mod=mod entgo.io/ent/cmd/ent new Hello
 endif
 
 dev:
 	air --build.cmd "go build -o bin/take-a-rest main.go router.go router_gen.go" --build.bin "./bin/take-a-rest"
 
-update:
+api-gen:
 	hz update -I idl -idl $(idl)
+
+model-gen:
 	go generate $(ENT_ROOT)
 
-model:
-	go run -mod=mod entgo.io/ent/cmd/ent --target $(ENT_ROOT)/schema new $(name)
+model-new:
+	go run -mod=mod entgo.io/ent/cmd/ent new $(name)
 
 generate:
 	go generate ./...
